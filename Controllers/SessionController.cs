@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
+using statswebapp_api;
 
 namespace statswebapp_api.Controllers;
 
@@ -6,16 +7,16 @@ namespace statswebapp_api.Controllers;
 [Route("/api/v1/[controller]/[action]")]
 public class SessionController : ControllerBase
 {
-    private readonly ILogger<SessionController> _logger;
+  private readonly ILogger<SessionController> _logger;
 
-    public SessionController(ILogger<SessionController> logger)
-    {
-        _logger = logger;
-    }
+  public SessionController(ILogger<SessionController> logger)
+  {
+    _logger = logger;
+  }
 
-    [HttpGet(Name = "GetNewSessionID")]
-    public string GetNewSessionID()
-    {
-        return "random-session-id-here";
-    }
+  [HttpGet(Name = "GetNewSessionID")]
+  public Guid GetNewSessionID()
+  {
+    return SessionManager.GenerateSessionID();
+  }
 }
