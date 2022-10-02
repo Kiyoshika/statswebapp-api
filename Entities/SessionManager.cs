@@ -18,6 +18,11 @@ namespace statswebapp_api
       return false;
     }
 
+    static public void RemoveSessionID(Guid sessionID)
+    {
+      sessionIDs.Remove(sessionID);
+    }
+
     static public Guid GenerateSessionID()
     {
       // generate IDs until we find a unique one

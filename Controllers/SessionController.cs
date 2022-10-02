@@ -19,4 +19,21 @@ public class SessionController : ControllerBase
   {
     return SessionManager.GenerateSessionID();
   }
+
+  [HttpDelete(Name = "RemoveSessionID")]
+  public IActionResult RemoveSessionID()
+  {
+    try
+    {
+      Guid sessionID = new Guid(Request.Headers["session-id"]);
+      SessionManager.RemoveSessionID(sessionID);
+    }
+    catch
+    {
+      return BadRequest();
+    }
+
+    return Ok();
+
+  }
 }
