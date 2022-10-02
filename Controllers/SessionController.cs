@@ -17,7 +17,9 @@ public class SessionController : ControllerBase
   [HttpGet(Name = "GetNewSessionID")]
   public Guid GetNewSessionID()
   {
-    return SessionManager.GenerateSessionID();
+    Guid newSessionID = SessionManager.GenerateSessionID();
+    _logger.LogInformation(string.Format("Client IP {0} requested new session ID {1}", Request.Headers["client-ip"], newSessionID));
+    return newSessionID;
   }
 
   [HttpDelete(Name = "RemoveSessionID")]
