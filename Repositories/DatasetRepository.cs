@@ -12,13 +12,13 @@ public class DatasetRepository
     datasets.Add(dataset);
   }
 
-  public List<Dataset> FindByFileNameAndSessionID(string FileName, Guid sessionID)
+  public Dataset? FindByFileNameAndSessionID(string fileName, Guid sessionID)
   {
-    List<Dataset> foundDatasets = new();
     foreach (Dataset _dataset in this.datasets)
-      if (_dataset.GetSessionID().Equals(sessionID))
-        foundDatasets.Add(_dataset);
+      if (_dataset.GetSessionID().Equals(sessionID) 
+          && _dataset.GetFileName().Equals(fileName))
+        return _dataset;
 
-    return foundDatasets;
+    return null;
   }
 }
