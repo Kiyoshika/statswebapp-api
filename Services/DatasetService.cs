@@ -47,7 +47,7 @@ public class DatasetService
         }
         }
 
-      datasetRepository.save(dataset);
+      datasetRepository.save(sessionID, dataset);
 
       return true;
     }
